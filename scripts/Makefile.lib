@@ -165,14 +165,15 @@ cpp_flags      = -Wp,-MD,$(depfile) $(NOSTDINC_FLAGS) $(UBOOTINCLUDE)     \
 ld_flags       = $(LDFLAGS) $(ldflags-y)
 
 # Try these files in order to find the U-Boot-specific .dtsi include file
-u_boot_dtsi_options = $(wildcard $(dir $<)$(basename $(notdir $<))-u-boot.dtsi) \
-	$(wildcard $(dir $<)$(subst $\",,$(CONFIG_SYS_SOC))-u-boot.dtsi) \
-	$(wildcard $(dir $<)$(subst $\",,$(CONFIG_SYS_CPU))-u-boot.dtsi) \
-	$(wildcard $(dir $<)$(subst $\",,$(CONFIG_SYS_VENDOR))-u-boot.dtsi) \
-	$(wildcard $(dir $<)u-boot.dtsi)
+          #u_boot_dtsi_options = $(wildcard $(dir $<)$(basename $(notdir $<))-u-boot.dtsi) \
+           #	$(wildcard $(dir $<)$(subst $\",,$(CONFIG_SYS_SOC))-u-boot.dtsi) \
+           #	$(wildcard $(dir $<)$(subst $\",,$(CONFIG_SYS_CPU))-u-boot.dtsi) \
+           #	$(wildcard $(dir $<)$(subst $\",,$(CONFIG_SYS_VENDOR))-u-boot.dtsi) \
+           #	$(wildcard $(dir $<)u-boot.dtsi)
+u_boot_dtsi_options =	$(wildcard  /home/max/Workdir/A20/android/Eddard/u-boot/arch/arm/dts/u-boot.dtsi)
 
 # Uncomment for debugging
-# $(warning u_boot_dtsi_options: $(u_boot_dtsi_options))
+#$(warning u_boot_dtsi_options: $(u_boot_dtsi_options))
 
 # We use the first match
 u_boot_dtsi = $(firstword $(u_boot_dtsi_options))

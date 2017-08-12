@@ -1142,9 +1142,10 @@ u-boot-x86-16bit.bin: u-boot FORCE
 endif
 
 ifneq ($(CONFIG_ARCH_SUNXI),)
-u-boot-sunxi-with-spl.bin: spl/sunxi-spl.bin u-boot.img u-boot.dtb \
-		checkbinman FORCE
-	$(call if_changed,binman)
+OBJCOPYFLAGS_u-boot-sunxi-with-spl.bin = -I binary -O binary \
+		--pad-to=$(CONFIG_SPL_PAD_TO) --gap-fill=0xff
+u-boot-sunxi-with-spl.bin: spl/sunxi-spl.bin u-boot.img FORCE
+	$(call if_changed,pad_cat)
 endif
 
 ifneq ($(CONFIG_TEGRA),)
